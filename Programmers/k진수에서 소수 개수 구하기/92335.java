@@ -1,6 +1,8 @@
 import java.util.*;
 
-
+/* 
+https://school.programmers.co.kr/learn/courses/30/lessons/92335
+*/
 class Solution {
     public int solution(int n, int k) {
         return count(divide(n,k));
@@ -14,17 +16,14 @@ class Solution {
     }
 
     public static boolean isPrime(Long n) {
-        // Step 1: Handle edge cases
-        if (n <= 1) return false;  // 1 이하의 숫자는 소수가 아님
-        if (n <= 3) return true;   // 2와 3은 소수
-        if (n % 2 == 0 || n % 3 == 0) return false; // 2와 3을 제외한 짝수 및 3의 배수는 소수가 아님
+        if (n <= 1) return false;  
+        if (n <= 3) return true;          
+        if (n % 2 == 0 || n % 3 == 0) return false; 
     
-        // Step 2: Check divisors up to sqrt(n)
-        for (long i = 5; i * i <= n; i += 6) { 
-            if (n % i == 0 || n % (i + 2) == 0) return false; // i와 i+2로 나누어지는 경우 소수가 아님
+        for (long i = 5; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) return false;
         }
-    
-        // Step 3: If no divisors found, n is prime
+
         return true;
     }
 
